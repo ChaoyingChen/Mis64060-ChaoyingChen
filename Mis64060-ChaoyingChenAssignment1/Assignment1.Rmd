@@ -1,0 +1,42 @@
+---
+title: "Assignment 1"
+author: "Chaoying Chen"
+date: "2022/1/29"
+output: html_document
+---
+
+## Data Sources
+https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results
+
+
+
+```{r}
+library(readr)
+athlete_events <- read_csv("athlete_events.csv")
+str(athlete_events)
+
+athlete_events<-na.omit(athlete_events)
+summary(athlete_events)
+
+```
+
+
+
+
+```{r}
+athlete_events<-transform(athlete_events,BMI=athlete_events$Weight/(athlete_events$Height/100)^2)
+head(athlete_events$BMI)
+
+
+```
+
+## Plots
+
+
+```{r pressure}
+datasex <- table(athlete_events$Sex)
+datagame<- with(athlete_events, table(Sex, Games))
+barplot(datagame, legend=TRUE)
+plot(athlete_events$Height,athlete_events$Weight)
+```
+
